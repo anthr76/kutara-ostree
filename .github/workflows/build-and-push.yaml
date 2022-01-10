@@ -20,7 +20,7 @@ jobs:
           echo ::set-output name=version::${GITHUB_REF##*/}
       - name: Build
         id: build
-        uses: redhat-actions/buildah-build@v2.8
+        uses: redhat-actions/buildah-build@v2.9
         with:
          image: kutara-ostree
          tags: v${{ steps.prep.outputs.version }} latest
