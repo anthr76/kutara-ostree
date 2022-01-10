@@ -2,11 +2,13 @@ FROM registry.fedoraproject.org/fedora-minimal
 
 COPY github-fetch.sh /bin/github-fetch
 
-RUN microdnf install -y shadow unzip jq && \
-    useradd kutara -u 1000
-
-VOLUME ["/data"]
+RUN microdnf install -y tar shadow unzip jq gzip rsync && \
+    useradd kutara -u 1000 && \
+    mkdir /data && \
+    chown -R kutara:kutara /data
 
 USER kutara
 
-ENTRYPOINT ["/bin/github-fetch"]
+VOLUME ["/data"]
+
+ENTRYPOINT [ "/bin/bash" ]
