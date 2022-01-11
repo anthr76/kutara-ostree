@@ -11,5 +11,5 @@ echo "INFO: Downloading $ZIP ..."
 [ -e /tmp/repository.zip ] || $CURL -L -o /tmp/repository.zip "$ZIP"
 mkdir /tmp/repo
 unzip -p /tmp/repository.zip | tar -xzC /tmp/repo
-rsync --no-perms --no-group --no-owner -aP --delete /tmp/repo/ /data
+rsync --no-perms --no-group --no-owner -P --delete /tmp/repo/ /data
 rm -rf /tmp/**
