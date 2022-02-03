@@ -18,6 +18,12 @@ jobs:
         id: prep
         run: |
           echo ::set-output name=version::${GITHUB_REF##*/}
+
+      - name: Install qemu dependency
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-user-static
+
       - name: Build
         id: build
         uses: redhat-actions/buildah-build@v2.9
@@ -25,6 +31,7 @@ jobs:
          image: kutara-ostree
          tags: v${{ steps.prep.outputs.version }} latest
          oci: true
+         archs: amd64, arm64
          layers: true
          containerfiles: ./Dockerfile
         
