@@ -7,8 +7,6 @@ RUN microdnf install -y tar rpm-ostree skopeo selinux-policy selinux-policy-targ
     mkdir /data && \
     chown -R kutara:kutara /data
 
-USER kutara
-
 VOLUME ["/data"]
 
 ENTRYPOINT [ "/bin/bash" ]
