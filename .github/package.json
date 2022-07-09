@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "conventional-changelog-conventionalcommits": "4.6.3",
-    "semantic-release": "19.0.2"
-  }
-}
-
