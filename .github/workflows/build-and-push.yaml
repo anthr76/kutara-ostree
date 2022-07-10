@@ -42,4 +42,4 @@ jobs:
          tags:  ${{ steps.build.outputs.tags }}
          registry: ghcr.io/${{ github.actor }}
          username: ${{ github.actor }}
-         password: ${{ secrets.CR_TOKEN }}
+         password: ${{ secrets.GITHUB_TOKEN }}
