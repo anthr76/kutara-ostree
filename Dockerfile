@@ -4,14 +4,16 @@ COPY github-fetch.sh /bin/github-fetch
 
 RUN microdnf install -y --nodocs --setopt=keepcache=0 \
     tar rpm-ostree skopeo podman selinux-policy selinux-policy-targeted \
-    policycoreutils tar patch ostree shadow unzip jq gzip rsync && \
-    useradd kutara -u 1000 && \
-    mkdir /data && \
-    mkdir -p /sysroot/ostree/repo && \
-    ostree init -v --mode archive-z2 --repo /sysroot/ostree/repo && \
-    ostree remote add kutara https://ostree.kutara.io --no-gpg-verify --repo /sysroot/ostree/repo && \ 
-    chown -R kutara:kutara /data
+    policycoreutils tar patch ostree shadow unzip jq gzip rsync \
+    && useradd kutara -u 1000 \
+    && mkdir /data \
+    && mkdir -p /sysroot/ostree/repo \
+    && ostree init -v --mode archive-z2 --repo /sysroot/ostree/repo \
+    && ostree remote add kutara "https://ostree.kutara.io" --no-gpg-verify --repo /sysroot/ostree/repo \ 
+    && chown -R kutara:kutara /data
 
-VOLUME ["/data"]
+VOLUME [ "/data" ]
 
 ENTRYPOINT [ "/bin/bash" ]
+
+LABEL org.opencontainers.image.source = https://github.com/anthr76/kutara-ostree
