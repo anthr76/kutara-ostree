@@ -14,6 +14,6 @@ RUN microdnf install -y --nodocs --setopt=keepcache=0 \
 
 VOLUME [ "/data" ]
 
-ENTRYPOINT [ "/bin/bash" ]
+ENTRYPOINT ["/bin/bash", "-l", "-c"]
 
 LABEL org.opencontainers.image.source = https://github.com/anthr76/kutara-ostree
