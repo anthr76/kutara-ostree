@@ -1,10 +1,16 @@
-FROM registry.fedoraproject.org/fedora-minimal:36@sha256:0ddce246625479dcf8ea8404e6e5342c27e35f6af579428fc59336a4bea67afe
+FROM registry.fedoraproject.org/fedora:36
 
 COPY github-fetch.sh /bin/github-fetch
 
-RUN microdnf install -y --nodocs --setopt=keepcache=0 \
+RUN \
+    echo 'installonly_limit=20' >> /etc/dnf/dnf.conf && \
+    echo 'fastestmirror=True' >> /etc/dnf/dnf.conf && \
+    echo 'max_parallel_downloads=20' >> /etc/dnf/dnf.conf && \
+    dnf install 'dnf-command(copr)' -y && \
+    dnf copr enable anthr76/golang-to-fedora -y && \
+    dnf install -y --nodocs --setopt=keepcache=0 \
     tar rpm-ostree skopeo podman selinux-policy selinux-policy-targeted \
-    policycoreutils tar patch ostree shadow unzip jq gzip rsync \
+    policycoreutils tar patch ostree shadow unzip jq gzip rsync s5cmd \
     && useradd kutara -u 1000 \
     && mkdir /data \
     && mkdir -p /sysroot/ostree/repo \
