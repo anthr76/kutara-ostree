@@ -11,7 +11,7 @@ RUN \
     dnf install -y --nodocs --setopt=keepcache=0 \
     tar rpm-ostree skopeo podman selinux-policy selinux-policy-targeted \
     policycoreutils tar patch ostree shadow unzip jq gzip rsync s5cmd \
-    busybox rng-tools dmraid device-mapper-multipath tpm2-tss biosdevname nvme-cli \
+    busybox rng-tools dmraid device-mapper-multipath tpm2-tss nvme-cli \
     && useradd kutara -u 1000 \
     && mkdir /data \
     && mkdir -p /sysroot/ostree/repo \
