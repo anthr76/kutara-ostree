@@ -15,7 +15,7 @@ RUN \
     && useradd kutara -u 1000 \
     && mkdir /data \
     && mkdir -p /sysroot/ostree/repo \
-    && ostree init -v --mode archive-z2 --repo /sysroot/ostree/repo \
+    && ostree init -v --mode archive --repo /sysroot/ostree/repo \
     && ostree remote add kutara "https://ostree.kutara.io" --no-gpg-verify --repo /sysroot/ostree/repo \ 
     && chown -R kutara:kutara /data
 
