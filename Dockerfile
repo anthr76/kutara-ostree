@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:37
+FROM registry.fedoraproject.org/fedora:40
 
 COPY github-fetch.sh /bin/github-fetch
 
